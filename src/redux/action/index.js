@@ -1,4 +1,3 @@
-// For Add Item to Cart
 export const addCart = (product) =>{
     return {
         type:"ADDITEM",
@@ -6,10 +5,16 @@ export const addCart = (product) =>{
     }
 }
 
-// For Delete Item to Cart
 export const delCart = (product) =>{
     return {
         type:"DELITEM",
+        payload:product
+    }
+}
+
+export const resetCart = (product) =>{
+    return {
+        type:"RESETCART",
         payload:product
     }
 }

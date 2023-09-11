@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "../components";
-import { useSelector } from "react-redux";
+// import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { resetCart } from "../redux/action";
+
 import ShowCheckout from "../components/FormCheckout";
 import Summary from "../components/SummaryCheckout";
 
 const Checkout = () => {
+  const cart = useSelector((state) => state.cart);
   const state = useSelector((state) => state.handleCart);
   const [showForm, setShowForm] = useState(false);
+
+
 
   const EmptyCart = () => {
     return (
@@ -28,7 +34,11 @@ const Checkout = () => {
     if (!showForm) {
       return ( 
       <div className="flex gap-6"> 
-        <div className=" w-7/12"><ShowCheckout /> </div>
+        <div className=" w-7/12"><ShowCheckout /> 
+        
+      
+
+         </div>
         <div className=" w-5/12"> <Summary /> </div>
       </div> )
     } else {
