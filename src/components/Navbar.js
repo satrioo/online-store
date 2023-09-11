@@ -1,5 +1,9 @@
 import React from "react";
-import { useSelector } from 'react-redux'
+import Cart from './Cart'
+import { TasksProvider, useTasks, useTasksDispatch } from "./CartContext.js";
+import { NavLink } from 'react-router-dom'
+import { CookiesProvider, useCookies } from "react-cookie";
+
 import {
   Navbar,
   MobileNav,
@@ -7,10 +11,11 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
- 
+
 function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
- 
+  const [cookies, setCookie] = useCookies(["user"]);
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -19,7 +24,7 @@ function NavbarDefault() {
   }, []);
  
   const navList = (
-    <ul className=" text-black mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className=" text-black mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
@@ -27,7 +32,7 @@ function NavbarDefault() {
         className="p-1 font-normal"
       >
         <a href="#" className="flex items-center">
-          Home
+          Home 
         </a>
       </Typography>
       <Typography
@@ -65,25 +70,33 @@ function NavbarDefault() {
  
   return (
     <>
-    <div className=" h-[72px] mb-6"></div>
-    <div className="fixed w-screen top-0 left-[-7px] bg-white border-0">
-    <Navbar className=" text-black mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4 overflow-hidden  border-0">
+    <TasksProvider>  
+    <div className=" h-[72px] mb-6 relative "></div>
+    <div className="fixed w-screen top-0 left-[-7px] bg-white border- z-10">
+    <Navbar className=" text-black mx-auto max-w-screen-xl py-3 px-4 lg:px-8 lg:py-4 overflow-hidden  border-0">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
-        >
-          Online Store
-        </Typography>
+        <NavLink className="nav-link" to="/">
+          <Typography
+            as="a"
+            href="#"
+            className="mr-4 cursor-pointer py-1.5 font-medium"
+          >
+            Online Store
+          </Typography>
+        </NavLink>
         <div className="hidden lg:block">{navList}</div>
         <div>
-        <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black text-sm">
-          <span>View Cart</span>
-        </Button>
-        <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black text-sm">
-          <span>Login</span>
-        </Button>
+
+        <Cart /> 
+        {cookies.user ? ( 
+          <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black text-sm">
+            <NavLink className="nav-link" to="/login">Logout <span className=" font-semibold ml-1">{cookies.user.name}</span> </NavLink>
+          </Button>) : (
+          <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black text-sm">
+            <NavLink className="nav-link" to="/login">Login </NavLink>
+          </Button>
+        )}
+        
         </div>
         <IconButton
           variant="text"
@@ -136,8 +149,14 @@ function NavbarDefault() {
       </MobileNav>
     </Navbar>
     </div>
+
+    <div className=" relative top-80">
+    {/* <Cart /> */}
+    </div>
+    </TasksProvider>
     </>
   );
 }
+
 
 export default NavbarDefault

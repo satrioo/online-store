@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import rootReducers from './reducer/handleCart';
+import rootReducers from './reducer';
 const store = configureStore({
     reducer: rootReducers,
 

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+ 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.checkout label{
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.checkout input, select{
+  border: solid 1px rgb(190 190 190);
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.checkout .invalid-feedback{
+  color: #e41414;
+  font-size: 13px;
+}
+
+.summary ul li{
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 0px 0 7px;
+  border-bottom: solid 1px #eaeaea;
+  margin-bottom: 15px;
+}

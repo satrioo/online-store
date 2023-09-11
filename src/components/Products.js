@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { addCart } from "../redux/action";
-
+import { useDispatch } from "react-redux";
+import { addCart } from "../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
-// import { Link } from "react-router-dom";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -14,11 +11,11 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
   let componentMounted = true;
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const addProduct = (product) => {
-  //   dispatch(addCart(product))
-  // }
+  const addProduct = (product) => {
+    dispatch(addCart(product))
+  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -44,7 +41,7 @@ const Products = () => {
         <div className="col-12 py-5 text-center">
           <Skeleton height={40} width={560} />
         </div>
-        <div className=" grid grid-cols-4 grid-flow-row gap-7">
+        <div className=" grid grid-cols-4 w-full grid-flow-row gap-7">
           <div className=" w-full">
             <Skeleton height={592} />
           </div>
@@ -80,7 +77,7 @@ const Products = () => {
   };
   const ShowProducts = () => {
     return (
-      <div>
+      <div className="">
         <div className="buttons text-center py-5">
           <button
             className="btn btn-outline-dark btn-sm m-2"
@@ -114,7 +111,7 @@ const Products = () => {
           </button>
         </div>
 
-        <div className=" grid grid-cols-4 grid-flow-row gap-7 max-w-screen-xl mx-auto">
+        <div className=" grid grid-cols-4 grid-flow-row gap-7 mx-auto">
           {filter.map((product) => {
             return (
               <div
@@ -171,8 +168,8 @@ const Products = () => {
   return (
     <div>
       <div className=" mx-auto my-7 max-w-screen-xl">
-        <div className="row">
-          <h2 className="display-5 text-center text-lg mb-4">
+        <div className="row justify-center">
+          <h2 className="display-5 text-lg mb-4">
             Latest Products
           </h2>
           <hr />
