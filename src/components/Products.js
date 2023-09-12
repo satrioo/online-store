@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -140,16 +140,14 @@ const Products = () => {
                   </div>
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item lead">$ {product.price}</li>
-                    {/* <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Vestibulum at eros</li> */}
                   </ul>
                   <div className="card-body mt-4">
-                    <Link
-                      href={"/product/" + product.id}
-                      className="  bg-gray-500 text-white px-3 inline-flex items-center h-7 text-sm rounded"
+                    <NavLink
+                      to={"/product/" + product.id}
+                      className=" bg-gray-500 text-white px-3 inline-flex items-center h-7 text-sm rounded"
                     >
-                      Buy Now
-                    </Link>
+                      Detail
+                    </NavLink>
                     <button
                       className=" bg-gray-500 text-white px-3 py-1 text-sm rounded inline-flex items-center h-7 ml-1"
                       onClick={() => addProduct(product)}

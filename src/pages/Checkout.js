@@ -3,17 +3,64 @@ import { Navbar } from "../components";
 // import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { resetCart } from "../redux/action";
-
 import ShowCheckout from "../components/FormCheckout";
 import Summary from "../components/SummaryCheckout";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
 
 const Checkout = () => {
-  const cart = useSelector((state) => state.cart);
   const state = useSelector((state) => state.handleCart);
   const [showForm, setShowForm] = useState(false);
+  let subtotal = 0;
+  let shipping = 30.0;
+  let totalItems = 0;
+  state.map((item) => {
+    return (subtotal += item.price * item.qty);
+  });
 
+  state.map((item) => {
+    return (totalItems += item.qty);
+  });
 
+  const PayPalButtonComponent = () => {
+    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+    const initialOptions = {
+      "client-id":
+        "ASbBTTlZN3iTrceQDn3XoQ249vyEAE939odiC3aeCYb2Nv6Fy0lS5trm-ws5NkzOPoGs1lZSVhGJLssR",
+      components: "buttons",
+      currency: "USD",
+    };
+
+    return (
+      <PayPalButtons
+        options={initialOptions}
+        createOrder={(data, actions) => {
+          // This function is called when the PayPal button is clicked.
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: Math.round(subtotal + shipping), // Set the payment amount here
+                },
+              },
+            ],
+          });
+        }}
+        onApprove={(data, actions) => {
+          // This function is called when the payment is approved.
+          return actions.order.capture().then((details) => {
+            // You can handle successful payments here.
+            console.log(
+              "Transaction completed by " + details.payer.name.given_name
+            );
+          });
+        }}
+      />
+    );
+  };
 
   const EmptyCart = () => {
     return (
@@ -32,19 +79,27 @@ const Checkout = () => {
 
   function Checkout() {
     if (!showForm) {
-      return ( 
-      <div className="flex gap-6"> 
-        <div className=" w-7/12"><ShowCheckout /> 
-        
-      
-
-         </div>
-        <div className=" w-5/12"> <Summary /> </div>
-      </div> )
+      return (
+        <div className="flex gap-6">
+          <div className=" w-7/12 pt-6">
+            {/* <ShowCheckout /> */}
+            <PayPalScriptProvider>
+              <PayPalButtonComponent />
+            </PayPalScriptProvider>
+          </div>
+          <div className=" w-5/12">
+            {" "}
+            <Summary />{" "}
+          </div>
+        </div>
+      );
     } else {
       return (
-       <div> <ShowCheckout /> bbbbb</div>
-      )
+        <div>
+          {" "}
+          <ShowCheckout /> bbbbb
+        </div>
+      );
     }
   }
 

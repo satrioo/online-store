@@ -56,3 +56,20 @@
   border-bottom: solid 1px #eaeaea;
   margin-bottom: 15px;
 }
+
+.contact label{
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.contact input, textarea{
+  border-bottom: solid 1px #cbcbcb;
+  width: 100%;
+  font-size: 15px;
+  padding: 10px 2px;
+}
+
+.contact .error{
+  margin-bottom: 20px;
+}

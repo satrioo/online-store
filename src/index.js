@@ -18,10 +18,12 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/checkout" element={<Checkout />} />
-        {/* <Route path="/product" element={<Products />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/product/:id" element={<Product />} />
+        {/* <Route path="/product" element={<Products />} />
+       
+        <Route path="/about" element={<AboutPage />} />
+        
         <Route path="/cart" element={<Cart />} />
         
         <Route path="/register" element={<Register />} />

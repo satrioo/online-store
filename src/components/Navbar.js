@@ -25,17 +25,19 @@ function NavbarDefault() {
  
   const navList = (
     <ul className=" text-black mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Home 
-        </a>
-      </Typography>
-      <Typography
+      <NavLink className="nav-link" to="/">
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <a href="#" className="flex items-center">
+            Home 
+          </a>
+        </Typography>
+      </NavLink>
+      {/* <Typography
         as="li"
         variant="small"
         color="blue-gray"
@@ -54,17 +56,19 @@ function NavbarDefault() {
         <a href="#" className="flex items-center">
           About 
         </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Contact
-        </a>
-      </Typography>
+      </Typography> */}
+      <NavLink className="nav-link" to="/contact">
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <a href="#" className="flex items-center">
+            Contact
+          </a>
+        </Typography>
+      </NavLink>
     </ul>
   );
  
