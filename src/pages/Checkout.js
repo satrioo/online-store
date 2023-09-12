@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Navbar } from "../components";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ShowCheckout from "../components/FormCheckout";
 import Summary from "../components/SummaryCheckout";
 import {
   PayPalScriptProvider,
@@ -12,7 +11,6 @@ import {
 
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
-  const [showForm ] = useState(false);
   let subtotal = 0;
   let shipping = 30.0;
   let totalItems = 0;
@@ -75,27 +73,18 @@ const Checkout = () => {
   };
 
   function Checkout() {
-    if (!showForm) {
-      return (
-        <div className="flex gap-6 justify-center">
-          <div className=" md:w-5/12 w-11/12 pt-6 justify-center mx-auto">
-            <div>
-              <Summary />
-            </div>
-            <PayPalScriptProvider>
-              <PayPalButtonComponent />
-            </PayPalScriptProvider>
+    return (
+      <div className="flex gap-6 justify-center">
+        <div className=" md:w-5/12 w-11/12 pt-6 justify-center mx-auto">
+          <div>
+            <Summary />
           </div>
+          <PayPalScriptProvider>
+            <PayPalButtonComponent />
+          </PayPalScriptProvider>
         </div>
-      );
-    } else {
-      return (
-        <div>
-          {" "}
-          <ShowCheckout /> bbbbb
-        </div>
-      );
-    }
+      </div>
+    );
   }
 
   return (
