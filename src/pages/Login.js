@@ -3,10 +3,10 @@ import { Spinner } from "@material-tailwind/react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Navbar } from "../components";
-import { Alert } from "@material-tailwind/react";
 import { useCookies } from "react-cookie";
 import { useNavigate  } from "react-router-dom";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -17,15 +17,20 @@ const schema = Yup.object().shape({
 });
 
 function App() {
-  const [show, setShow] = useState(false);
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [cookies, setCookie] = useCookies(["user"]);
   const navigate = useNavigate(); 
 
-  function AlertDefault() {
-      return <Alert className=" bg-gray-500 mt-2 mb-5 flex justify-center"> {error.length !== 0 ? error : 'error'} </Alert>
-  }
+  const notify = () => toast.error('username or password is incorrect', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  })
 
   function CustomSpinner() {
     return (
@@ -48,14 +53,10 @@ function App() {
       navigate("/")
     })
     .catch(error => {
-        console.error('There was an error!', error.response.data);
-        setError(error.response.data)
-        setShow(true)
-        setTimeout(() => {
-          setShow(false)
-        }, 3000);
-        setLoading(false) 
-    });
+      console.error('There was an error!', error.response.data);
+      notify()
+      setLoading(false) 
+    })
   }
 
   return (
@@ -67,7 +68,6 @@ function App() {
           {" "}
           Login{" "}
         </h1>
-        { show ? <AlertDefault /> : ''}
         <Formik
           validationSchema={schema}
           initialValues={{ email: "", password: "" }}
@@ -94,7 +94,7 @@ function App() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.email}
-                      placeholder="Enter email id / username"
+                      placeholder="Enter username"
                       className=" border-b  border-gray-400 w-full py-2 px-1 text-[14px]"
                       id="email"
                     />
@@ -134,6 +134,8 @@ function App() {
           
           </pre>
       </div>
+
+      <ToastContainer />
     </>
   );
 }

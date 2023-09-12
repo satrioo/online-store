@@ -41,7 +41,7 @@ export default function App() {
               Contact{" "}
             </h1>
             <form
-              className="App w-1/2 mx-auto border mt-5 p-6 rounded"
+              className="App md:w-1/2 w-full mx-auto border mt-5 p-6 rounded"
               onSubmit={handleSubmit}
             >
               <div>

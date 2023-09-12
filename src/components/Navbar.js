@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import Cart from './Cart'
-import { TasksProvider, useTasks, useTasksDispatch } from "./CartContext.js";
+import { TasksProvider } from "./CartContext.js";
 import { NavLink } from 'react-router-dom'
-import { useCookies } from "react-cookie";
+import { useCookies  } from "react-cookie";
+import { deleteCookie } from 'cookies-next';
 
 import {
   Navbar,
@@ -18,6 +19,7 @@ function NavbarDefault() {
 
   function logout() {
     removeCookie('user');
+    deleteCookie('user');
   }
 
   React.useEffect(() => {
@@ -41,26 +43,6 @@ function NavbarDefault() {
           </a>
         </Typography>
       </NavLink>
-      {/* <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Product
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          About 
-        </a>
-      </Typography> */}
       <NavLink className="nav-link" to="/contact">
         <Typography
           as="li"
@@ -87,13 +69,13 @@ function NavbarDefault() {
           <Typography
             as="a"
             href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
+            className="mr-4 cursor-pointer py-1.5 font-medium "
           >
             Online Store
           </Typography>
         </NavLink>
         <div className="hidden lg:block">{navList}</div>
-        <div>
+        <div className=" flex">
 
         <Cart /> 
         {cookies.user ? ( 
@@ -147,11 +129,11 @@ function NavbarDefault() {
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>View Cart </span>
+          <Button variant="gradient" size="sm" fullWidth className="mb-2 text-black">
+           <NavLink className="nav-link" to="/cart"><span>View Cart </span> </NavLink>
           </Button>
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-          <i className="fa fa-cart-shopping mr-1"></i><span>Login</span>
+          <Button variant="gradient" size="sm" fullWidth className="mb-2 text-black">
+          <NavLink className="nav-link" to="/login"><span>Login</span></NavLink>
           </Button>
         </div>
       </MobileNav>
@@ -159,7 +141,6 @@ function NavbarDefault() {
     </div>
 
     <div className=" relative top-80">
-    {/* <Cart /> */}
     </div>
     </TasksProvider>
     </>

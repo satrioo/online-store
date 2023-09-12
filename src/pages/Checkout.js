@@ -50,9 +50,7 @@ const Checkout = () => {
           });
         }}
         onApprove={(data, actions) => {
-          // This function is called when the payment is approved.
           return actions.order.capture().then((details) => {
-            // You can handle successful payments here.
             console.log(
               "Transaction completed by " + details.payer.name.given_name
             );
@@ -81,7 +79,7 @@ const Checkout = () => {
     if (!showForm) {
       return (
         <div className="flex gap-6">
-          <div className=" w-7/12 pt-6 justify-center mx-auto">
+          <div className=" md:w-7/12 w-11/12 pt-6 justify-center mx-auto">
             <div>
               <Summary />
             </div>

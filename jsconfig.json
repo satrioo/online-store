@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "paths": {
-      "next/*": ["node_modules/@next/*"],
       "@/*": ["./src/*"]
     }
   }

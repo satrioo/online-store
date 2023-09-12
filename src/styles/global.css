@@ -79,3 +79,21 @@
   justify-content: space-between;
   margin: 7px 0;
 }
+
+button, a, li.text-blue-gray-900, button.text-black.btn-outline-dark{
+  -webkit-transition: background-color 400ms linear;
+  -ms-transition: background-color 400ms linear;
+  transition: background-color 400ms linear;
+}
+button.bg-gray-500:hover, a.bg-gray-500:hover{
+  background: black;
+}
+
+li.text-blue-gray-900:hover, button.text-black:hover, .btn-outline-dark:hover{
+  background: #eeeeee;
+  border-radius: 5px;
+}
+
+.btn-outline-dark{
+  padding: 4px 7px;
+}

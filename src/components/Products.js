@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { ToastContainer, toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
 
 const Products = () => {
@@ -14,8 +15,20 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const addProduct = (product) => {
+    notifyProduct()
     dispatch(addCart(product))
   }
+
+  const notifyProduct = () => toast.info("Added to Cart", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  })
 
   useEffect(() => {
     const getProducts = async () => {
@@ -41,7 +54,7 @@ const Products = () => {
         <div className="col-12 py-5 text-center">
           <Skeleton height={40} width={560} />
         </div>
-        <div className=" grid grid-cols-4 w-full grid-flow-row gap-7">
+        <div className=" grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 w-full grid-flow-row gap-7">
           <div className=" w-full">
             <Skeleton height={592} />
           </div>
@@ -111,7 +124,7 @@ const Products = () => {
           </button>
         </div>
 
-        <div className=" grid grid-cols-4 grid-flow-row gap-7 mx-auto">
+        <div className=" grid lg:grid-cols-4 sm:grid-cols-3 grid-cols-2  grid-flow-row gap-7 mx-auto">
           {filter.map((product) => {
             return (
               <div
@@ -144,12 +157,12 @@ const Products = () => {
                   <div className="card-body mt-4">
                     <NavLink
                       to={"/product/" + product.id}
-                      className=" bg-gray-500 text-white px-3 inline-flex items-center h-7 text-sm rounded"
+                      className=" bg-gray-500 mb-2 text-white px-3 inline-flex items-center h-7 text-sm rounded"
                     >
                       Detail
                     </NavLink>
                     <button
-                      className=" bg-gray-500 text-white px-3 py-1 text-sm rounded inline-flex items-center h-7 ml-1"
+                      className=" bg-gray-500 mb-2 text-white px-3 py-1 text-sm rounded inline-flex items-center h-7 ml-1"
                       onClick={() => addProduct(product)}
                     >
                       Add to Cart
@@ -174,6 +187,7 @@ const Products = () => {
         </div>
         <div className="row justify-content-center">
           {loading ? <Loading /> : <ShowProducts />}
+         
         </div>
       </div>
     </div>

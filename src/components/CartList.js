@@ -1,12 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
-import { Link } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import { useCookies } from "react-cookie";
 
 const CartList = () => {
   const state = useSelector((state) => state.handleCart);
+  const [cookies] = useCookies(["user"]);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate(); 
+  
   const EmptyCart = () => {
     return (
       <div className="container">
@@ -19,12 +23,28 @@ const CartList = () => {
     );
   };
 
+  const notify = () => toast.info("Please login first", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  })
+
   const addItem = (product) => {
     dispatch(addCart(product));
   };
   const removeItem = (product) => {
     dispatch(delCart(product));
   };
+
+  function goCheckout() {
+    cookies.user ? navigate("/checkout") : notify()
+    
+  }
 
   const ShowCart = () => {
     let subtotal = 0;
@@ -133,12 +153,12 @@ const CartList = () => {
                       </li>
                     </ul>
 
-                    <Link
-                      to="/checkout"
+                    <button
+                      onClick={goCheckout}
                       className=" w-full block mt-4 py-2 text-center rounded bg-gray-500 text-white text-[16px] font-semibold"
                     >
                       Go to checkout
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
