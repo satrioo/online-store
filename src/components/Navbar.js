@@ -4,6 +4,7 @@ import { TasksProvider } from "./CartContext.js";
 import { NavLink } from 'react-router-dom'
 import { useCookies  } from "react-cookie";
 import { deleteCookie } from 'cookies-next';
+import { useNavigate  } from "react-router-dom";
 
 import {
   Navbar,
@@ -16,10 +17,12 @@ import {
 function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
   const [cookies, removeCookie] = useCookies(["user"]);
+  const navigate = useNavigate(); 
 
   function logout() {
     removeCookie('user');
     deleteCookie('user');
+    navigate("/")
   }
 
   React.useEffect(() => {

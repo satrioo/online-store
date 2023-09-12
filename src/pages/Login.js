@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Navbar } from "../components";
 import { useCookies } from "react-cookie";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -59,8 +59,9 @@ function App() {
     })
   }
 
-  return (
-    <>
+  function Form() {
+    return (
+      <>
       <Navbar />
       { loading ? <CustomSpinner /> : ''}
       <div className=" flex w-full flex-wrap justify-center">
@@ -134,6 +135,13 @@ function App() {
           
           </pre>
       </div>
+      </>
+    )
+  }
+
+  return (
+    <>
+      {cookies.user ? (<Navigate replace to={"/"} />) : (<Form />) }
 
       <ToastContainer />
     </>

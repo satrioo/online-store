@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { Navbar } from "../components";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Summary from "../components/SummaryCheckout";
+import { useCookies } from "react-cookie";
+
 import {
   PayPalScriptProvider,
   PayPalButtons,
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 
+
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
+  const [cookies] = useCookies(["user"]);
   let subtotal = 0;
   let shipping = 30.0;
   let totalItems = 0;
@@ -89,12 +93,20 @@ const Checkout = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="container my-3 py-3 block mx-auto ">
-        <h1 className="text-center font-semibold text-[18px] pb-2">Checkout</h1>
-        <hr />
-        {state.length ? <Checkout /> : <EmptyCart />}
-      </div>
+      {cookies.user ? (
+        <>
+          <Navbar />
+          <div className="container my-3 py-3 block mx-auto ">
+            <h1 className="text-center font-semibold text-[18px] pb-2">
+              Checkout
+            </h1>
+            <hr />
+            {state.length ? <Checkout /> : <EmptyCart />}
+          </div>
+        </>
+      ) : (
+        <Navigate replace to={"/"} />
+      )}
     </>
   );
 };
