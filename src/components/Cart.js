@@ -5,7 +5,6 @@ import CartList from "./CartList.js"
 import {
   Drawer,
   Button,
-  Typography,
   IconButton,
 } from "@material-tailwind/react";
 

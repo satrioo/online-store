@@ -49,7 +49,7 @@ export default function App() {
                 <input
                   id="email"
                   type="text"
-                  placeholder="email"
+                  placeholder="Enter email"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -63,7 +63,7 @@ export default function App() {
                 <input
                   id="subject"
                   type="text"
-                  placeholder="subject"
+                  placeholder="Enter subject"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.subject}
@@ -76,7 +76,7 @@ export default function App() {
                 <label>Description </label>
                 <textarea
                   id="description"
-                  placeholder="description"
+                  placeholder="Enter description"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.description}

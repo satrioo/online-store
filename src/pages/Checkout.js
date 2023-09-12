@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Navbar } from "../components";
-// import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ShowCheckout from "../components/FormCheckout";
 import Summary from "../components/SummaryCheckout";
@@ -13,7 +12,7 @@ import {
 
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm ] = useState(false);
   let subtotal = 0;
   let shipping = 30.0;
   let totalItems = 0;
