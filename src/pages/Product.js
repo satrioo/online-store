@@ -160,7 +160,7 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <div className="container w-full block mx-auto max-w-screen-xl px-4">
+      <div className="container w-full block mx-auto max-w-screen-xl px-8">
         <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">

@@ -55,17 +55,15 @@ function Task({ task }) {
       <Drawer
         placement="right"
         open={task.value}
-        // onClose={toggleDrawer}
         className="p-4 drawer right-0 fixed top-0 z-30 shadow-lg"
       >
         <div>
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-2 flex items-center justify-between">
             <span className=" font-semibold"> Cart </span>
             <IconButton
               variant="text"
-              className=" !overflow-visible"
+              className=" !overflow-visible relative right-6 -top-1"
               color="blue-gray"
-              // onClick={toggleDrawer}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

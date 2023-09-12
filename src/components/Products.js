@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -131,15 +131,15 @@ const Products = () => {
                     />
                   </figure>
                   <div className="card-body">
-                    <h5 className="card-title">
+                    <h5 className="card-title text-[16px] font-semibold">
                       {product.title.substring(0, 12)}...
                     </h5>
-                    <p className="card-text">
+                    <p className="card-text text-[14px]">
                       {product.description.substring(0, 90)}...
                     </p>
                   </div>
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item lead">$ {product.price}</li>
+                  <ul className="list-group list-group-flush mt-4 font-semibold text-[15px]">
+                    $ {product.price}
                   </ul>
                   <div className="card-body mt-4">
                     <NavLink
@@ -165,9 +165,9 @@ const Products = () => {
   };
   return (
     <div>
-      <div className=" mx-auto my-7 max-w-screen-xl">
+      <div className=" mx-auto my-7 max-w-screen-xl px-8">
         <div className="row justify-center">
-          <h2 className="display-5 text-lg mb-4">
+          <h2 className="text-lg mb-4 text-[16px] text-gray-600 text-center font-medium">
             Latest Products
           </h2>
           <hr />

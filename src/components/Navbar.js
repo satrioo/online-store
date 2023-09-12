@@ -2,7 +2,7 @@ import React from "react";
 import Cart from './Cart'
 import { TasksProvider, useTasks, useTasksDispatch } from "./CartContext.js";
 import { NavLink } from 'react-router-dom'
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 
 import {
   Navbar,
@@ -14,7 +14,11 @@ import {
 
 function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies, removeCookie] = useCookies(["user"]);
+
+  function logout() {
+    removeCookie('user');
+  }
 
   React.useEffect(() => {
     window.addEventListener(
@@ -93,8 +97,8 @@ function NavbarDefault() {
 
         <Cart /> 
         {cookies.user ? ( 
-          <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black text-sm">
-            <NavLink className="nav-link" to="/login">Logout <span className=" font-semibold ml-1">{cookies.user.name}</span> </NavLink>
+          <Button variant="gradient" onClick={logout} size="sm" className="hidden lg:inline-block text-black text-sm">
+            Logout <span className=" font-semibold ml-1">{cookies.user.name}</span> 
           </Button>) : (
           <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black text-sm">
             <NavLink className="nav-link" to="/login">Login </NavLink>

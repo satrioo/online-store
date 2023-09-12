@@ -20,16 +20,6 @@ root.render(
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/product/:id" element={<Product />} />
-        {/* <Route path="/product" element={<Products />} />
-       
-        <Route path="/about" element={<AboutPage />} />
-        
-        <Route path="/cart" element={<Cart />} />
-        
-        <Route path="/register" element={<Register />} />
-        
-        <Route path="*" element={<PageNotFound />} />
-        <Route path="/product/*" element={<PageNotFound />} /> */}
       </Routes>
     </Provider>
   </BrowserRouter>

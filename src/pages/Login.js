@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Navbar } from "../components";
 import { Alert } from "@material-tailwind/react";
 import { useCookies } from "react-cookie";
+import { useNavigate  } from "react-router-dom";
 import axios from 'axios';
 
 const schema = Yup.object().shape({
@@ -20,6 +21,7 @@ function App() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [cookies, setCookie] = useCookies(["user"]);
+  const navigate = useNavigate(); 
 
   function AlertDefault() {
       return <Alert className=" bg-gray-500 mt-2 mb-5 flex justify-center"> {error.length !== 0 ? error : 'error'} </Alert>
@@ -43,6 +45,7 @@ function App() {
       console.log(response)
       setCookie("user", {token: response.data.token, name: val.email});
       setLoading(false) 
+      navigate("/")
     })
     .catch(error => {
         console.error('There was an error!', error.response.data);
@@ -121,6 +124,15 @@ function App() {
             </div>
           )}
         </Formik>
+      </div>
+
+      <div className=" max-w-lg mt-4 p-5 bg-gray-100 block mx-auto"> 
+        <pre> 
+          example: <br />
+             username: "mor_2314", <br />
+             password: "83r5^_"
+          
+          </pre>
       </div>
     </>
   );

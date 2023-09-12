@@ -81,15 +81,14 @@ const Checkout = () => {
     if (!showForm) {
       return (
         <div className="flex gap-6">
-          <div className=" w-7/12 pt-6">
-            {/* <ShowCheckout /> */}
+          <div className=" w-7/12 pt-6 justify-center mx-auto">
+            <div>
+              <Summary />
+            </div>
             <PayPalScriptProvider>
               <PayPalButtonComponent />
             </PayPalScriptProvider>
-          </div>
-          <div className=" w-5/12">
-            {" "}
-            <Summary />{" "}
+            
           </div>
         </div>
       );

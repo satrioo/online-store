@@ -73,3 +73,9 @@
 .contact .error{
   margin-bottom: 20px;
 }
+
+.list-group li{
+  display:  flex;
+  justify-content: space-between;
+  margin: 7px 0;
+}

@@ -40,9 +40,9 @@ const CartList = () => {
     return (
       <>
         <section className=" gradient-custom h-screen">
-          <div className="container py-5">
-            <div className="row flex w-full justify-content-center my-4">
-              <div className=" w-full">
+          <div className="container py-5 h-full flex">
+            <div className="row flex w-full justify-content-center my-4 flex-col flex-1">
+              <div className=" w-full flex-1 overflow-y-scroll">
                 <div className="card border-l-0 border-r-0 border-b-0 mb-4">
                   <div className="card-body">
                     {state.map((item) => {
@@ -108,14 +108,14 @@ const CartList = () => {
                   </div>
                 </div>
               </div>
-              <div className=" w-full absolute bottom-28 left-0">
+              <div className=" w-full mb-12 left-0">
                 <div className="mb-4 w-full">
                   <div className="card-header py-3 border-t bg-white">
                     <h5 className="mb-0">Order Summary</h5>
                   </div>
                   <div className="card-body">
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-3">
+                    <ul className="list-group">
+                      <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
                         Products ({totalItems})
                         <span>${Math.round(subtotal)}</span>
                       </li>
@@ -135,7 +135,7 @@ const CartList = () => {
 
                     <Link
                       to="/checkout"
-                      className="btn btn-dark btn-block text-[18px]"
+                      className=" w-full block mt-4 py-2 text-center rounded bg-gray-500 text-white text-[16px] font-semibold"
                     >
                       Go to checkout
                     </Link>
