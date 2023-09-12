@@ -62,7 +62,7 @@ function Task({ task }) {
             <span className=" font-semibold"> Cart </span>
             <IconButton
               variant="text"
-              className=" !overflow-visible relative right-6 -top-1"
+              className=" !overflow-visible relative md:top-0 close  -top-1"
               color="blue-gray"
             >
               <svg

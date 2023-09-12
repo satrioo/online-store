@@ -64,7 +64,7 @@ const Checkout = () => {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-12 py-5 bg-light text-center">
+          <div className="py-5 bg-light text-center">
             <h4 className="p-3 display-5">No item in Cart</h4>
             <Link to="/" className="btn btn-outline-dark mx-4">
               <i className="fa fa-arrow-left"></i> Continue Shopping
@@ -78,15 +78,14 @@ const Checkout = () => {
   function Checkout() {
     if (!showForm) {
       return (
-        <div className="flex gap-6">
-          <div className=" md:w-7/12 w-11/12 pt-6 justify-center mx-auto">
+        <div className="flex gap-6 justify-center">
+          <div className=" md:w-5/12 w-11/12 pt-6 justify-center mx-auto">
             <div>
               <Summary />
             </div>
             <PayPalScriptProvider>
               <PayPalButtonComponent />
             </PayPalScriptProvider>
-            
           </div>
         </div>
       );

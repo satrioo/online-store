@@ -62,7 +62,7 @@ const CartList = () => {
         <section className=" gradient-custom h-screen">
           <div className="container py-5 h-full flex">
             <div className="row flex w-full justify-content-center my-4 flex-col flex-1">
-              <div className=" w-full flex-1 overflow-y-scroll">
+              <div className=" w-full flex-1 overflow-y-auto">
                 <div className="card border-l-0 border-r-0 border-b-0 mb-4">
                   <div className="card-body">
                     {state.map((item) => {
